@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'; 
 import Contact from "components/Contact";
-import {Contacts}  from './ContactList.styled.js'
+import { Contacts } from './ContactList.styled.js';
 
 const ContactList = ({ contacts, onDelete }) => {
     return (
@@ -15,7 +15,7 @@ const ContactList = ({ contacts, onDelete }) => {
                             onDelete={onDelete}
                         />))}
                 </Contacts>}
-    </>
+        </>
 )};
 
 ContactList.propTypes = {

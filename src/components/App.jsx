@@ -9,18 +9,30 @@ import Box from "components/Box";
 // utils
 import getFilteredContacts from "utils/getFilteredContacts";
 
-import initialContacts from 'contacts.json';
+// import initialContacts from 'contacts.json'; <--- get them from localStorage in componentDidMount()
+
 import { PhonebookTitle, PnonebookSubtitle } from "./App.styled";
 
 class App extends Component {
   state = {
-    contacts: initialContacts,
+    contacts: [], //initialContacts,
     filter: '',
   }
 
+  componentDidMount() {
+    const contacts =
+      localStorage.getItem('contacts')
+        ? JSON.parse(localStorage.getItem('contacts'))
+        : [];
+    
+    this.setState({
+      contacts,
+    })
+  };
+
   componentDidUpdate() {
     localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
-  }
+  };
 
   addContact = ({ name, number }) => {
     const { contacts } = this.state;
@@ -48,6 +60,7 @@ class App extends Component {
     }));
   };
 
+  // for Filter
   handleInput = ({ target: { name, value } }) => {
       this.setState({
           [name]: value,
@@ -57,28 +70,28 @@ class App extends Component {
   render() {
     const { contacts, filter } = this.state;
 
-    const localContacts = localStorage.getItem('contacts') ? JSON.parse(localStorage.getItem('contacts')) : this.state.contacts;
-    console.log(localContacts);
-    
     const filteredContacts = getFilteredContacts(contacts, filter);
 
     return (
-      
-      <Box width={350} ml='auto' mr='auto' border='1px solid' borderColor='gray' p='20px 20px'>
+      <Box
+        width={350} ml='auto' mr='auto' p='20px'
+        border='1px solid' borderColor='gray'
+      >
 
         <PhonebookTitle>Phonebook</PhonebookTitle>
 
         {/* Form component */}
         <ContactForm
           onAddContact={this.addContact}
-          onInput={this.handleInput} />
+        />
 
         <PnonebookSubtitle>Contacts</PnonebookSubtitle>
 
         {/* Filter component */}
         <Filter
           filter={filter}
-          onInput={this.handleInput} />
+          onInput={this.handleInput}
+        />
         
         {/* Contacts list Component */}
         <ContactList

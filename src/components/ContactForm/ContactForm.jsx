@@ -7,7 +7,14 @@ class ContactForm extends Component {
     state = {
         name: '',
         number: '',
-    }
+    };
+    
+    resetContactForm = () => {
+        this.setState({
+            name: '',
+            number: '',
+        })
+    };
     
     handleSubmit = e => {
         e.preventDefault();
@@ -16,13 +23,7 @@ class ContactForm extends Component {
         this.resetContactForm();
     };
 
-    resetContactForm = () => {
-        this.setState({
-            name: '',
-            number: '',
-        })
-    };
-
+    
     handleChangeInput = ({ target: { name, value } }) => {
         this.setState({
             [name]: value,
@@ -70,7 +71,6 @@ class ContactForm extends Component {
 };
 
 ContactForm.propTypes = {
-    onInput: PropTypes.func.isRequired,
     onAddContact: PropTypes.func.isRequired,
 }
 

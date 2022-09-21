@@ -26,8 +26,6 @@ const App = () => {
   }, [contacts]);
   
   const addContact = ({ name, number }) => {
-    console.log({ name, number });
-
     if (contacts.find(contact => contact.name === name)) {
       alert(`"${name}" is already in contacts.`)
       return;

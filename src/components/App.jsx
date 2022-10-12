@@ -11,7 +11,7 @@ import getFilteredContacts from "utils/getFilteredContacts";
 
 // import initialContacts from 'contacts.json'; <--- get them from localStorage in componentDidMount()
 
-import { PhonebookTitle, PnonebookSubtitle } from "./App.styled";
+import { PhonebookTitle, PhonebookSubtitle } from "./App.styled";
 
 const App = () => {
   const [contacts, setContacts] = useState(() => 
@@ -65,7 +65,7 @@ const App = () => {
         onAddContact={addContact}
       />
 
-      <PnonebookSubtitle>Contacts</PnonebookSubtitle>
+      <PhonebookSubtitle>Contacts</PhonebookSubtitle>
 
       {/* Filter component */}
       <Filter
